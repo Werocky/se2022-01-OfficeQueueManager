@@ -1,6 +1,6 @@
 'use strict'
 
-const db = require('./DB').db;
+const db = require('./DB');
 
 class queue{
 
@@ -17,10 +17,13 @@ class queue{
     }
     getQueue(){
         return this.queueList;
+
     }
 
     pushToQueue(clientWaitNumber){
         this.queueList.push(clientWaitNumber);
+        //
+        db.addUserToQueue(this.service, clientWaitNumber);
     }
     popFromQueue(){
         return new Promise(
