@@ -6,14 +6,15 @@ import { Alert } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import {LogoutButton } from './LoginPage';
 import { TicketPage } from './TicketPage';
+import API from './API';
 
 
 
-const services = [
-  { id: 1, name: 'a' },
-  { id: 2, name: 'b'},
-  { id: 3, name: 'c'}
-];
+/*const services = [
+  { id: '1', name: 'a' },
+  { id: '2', name: 'b'},
+  { id: '3', name: 'c'}
+];*/
 
 function App() {
   return (
@@ -25,10 +26,18 @@ function App() {
 function App2(){
   const [loggedIn, setLoggedIn] = useState(false);
   const [message, setMessage] = useState('');
-  const[user,setUser]=useState([]);
+  const [user,setUser]=useState([]);
+  const [services, setServices] = useState([]);
   const navigate=useNavigate();
 
-
+  useEffect(() => {
+    if(!loggedIn)
+      API.getServices()
+        .then((servicesList) => {
+          setServices(servicesList);
+        })
+        .catch(/* error handling */)
+  }, [loggedIn])
 
   const doLogIn = (credentials) => {
    /* API.logIn(credentials)
