@@ -2,7 +2,7 @@ import { Form, Button, Alert, Container, Row, Col } from 'react-bootstrap';
 import { useState } from 'react';
 
 function LoginForm(props) {
-  const [username, setUsername] = useState('vittorio.magelli@gmail.com');
+  const [username, setUsername] = useState('a@gmail.com');
   const [password, setPassword] = useState('mamma');
   const [errorMessage, setErrorMessage] = useState('') ;
   
