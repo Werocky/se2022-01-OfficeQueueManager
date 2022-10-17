@@ -55,10 +55,10 @@ exports.getQueues = () => {
   };
 
 // add a new user when a service is selected
-exports.addUserToQueue = (idService, idUser) => {
+exports.addUserToQueue = (idService, ticketTime, idUser) => {
     return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO Queue (userId, idService, tickeTime, turnTime) VALUES(?, ?, ?, ?)';
-      db.run(sql, [idUser, idService, 0, 0], function (err) {//null values must be filled with future implementation
+      const sql = 'INSERT INTO Queue VALUES(?, ?, ?, ?)';
+      db.run(sql, [idUser/* JUST A STATIC VALUE */, idService, ticketTime, 0], function (err) {//null values must be filled with future implementation
         if (err) {
           reject(err);
           return;
