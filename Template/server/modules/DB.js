@@ -69,6 +69,19 @@ exports.addUserToQueue = (idService, ticketTime, clientWaitNumber) => {
     });
   };
 
+exports.getMaxUser = (idService) => {
+  return new Promise((Resolve, reject) => {
+    const sql = 'SELECT MAX(clientWaitNumber) FROM Queue WHERE service=?';
+    db.all(sql, [idService],(err, row) => {
+      if(err) {
+        reject(err);
+        return;
+      }
+      return row;
+    } )
+  })
+}
+
 // add a new user when a service is selected
 exports.userServed = (idUser, turnTime) => {
   return new Promise((resolve, reject) => {
