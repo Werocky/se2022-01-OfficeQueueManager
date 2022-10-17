@@ -55,22 +55,25 @@ app.get('/getQueues', (req, res) => {
     .catch(() => res.status(500).end());
 });
 
-/*
+//enqueue
 app.post('/addToQueue',// isLoggedIn, []
-async (req, res) => {
-const errors = validationResult(res);
-  if (!errors.isEmpty()) {
-  return res.status(422).json({error: 'cannot process request'});
+  async (req, res) => {
+  const errors = validationResult(res);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({error: 'cannot process request'});
+    }
+  const idService = req.body.idService;
+  const ticketTime = req.body.ticketTime;
+  const idUser = 3; //logic to assign id to users must be implemented
+  try {
+    await db.addUserToQueue(idService, ticketTime, idUser);
+    console.log(req.body);
+    res.status(201).end();
+  } catch(err) {
+    res.status(503).json({error: `Error during enqueue of user ${req.body.idUser}.`});
   }
-try {
- await db.addUserToQueue(req.body.idService, req.body.idUser);
- console.log(req.body);
- res.status(201).end();
-} catch(err) {
- res.status(503).json({error: `Error during enqueue of user ${req.body.idUser}.`});
-}
 });
-*/
+
 
 /*** Users APIs ***/
 
