@@ -64,13 +64,13 @@ app.post('/addToQueue',// isLoggedIn, []
     }
   const idService = req.body.idService;
   const ticketTime = req.body.ticketTime;
-  const idUser = 3; //logic to assign id to users must be implemented
+  const clientWaitNumber = req.body.clientWaitNumber;
   try {
-    await db.addUserToQueue(idService, ticketTime, idUser);
+    await db.addUserToQueue(idService, ticketTime, clientWaitNumber);
     console.log(req.body);
     res.status(201).end();
   } catch(err) {
-    res.status(503).json({error: `Error during enqueue of user ${req.body.idUser}.`});
+    res.status(503).json({error: `Error during enqueue`});
   }
 });
 

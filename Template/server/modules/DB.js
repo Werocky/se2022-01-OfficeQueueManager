@@ -27,7 +27,7 @@ exports.getServicesPerOfficer = () => {
 //get the full list of available services
 exports.getServices = () => {
     return new Promise((resolve, reject) => {
-      const sql = 'SELECT * FROM Services';
+      const sql = 'SELECT * FROM Service';
       db.all(sql, [], (err, rows) => {
         if (err) {
           reject(err);
@@ -55,10 +55,10 @@ exports.getQueues = () => {
   };
 
 // add a new user when a service is selected
-exports.addUserToQueue = (idService, ticketTime, idUser) => {
+exports.addUserToQueue = (idService, ticketTime, clientWaitNumber) => {
     return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO Queue VALUES(?, ?, ?, ?)';
-      db.run(sql, [idUser/* JUST A STATIC VALUE */, idService, ticketTime, 0], function (err) {//null values must be filled with future implementation
+      const sql = 'INSERT INTO Queue(service, ticketTime, clientWaitNumber) VALUES(?, ?, ?)';
+      db.run(sql, [idService, ticketTime, clientWaitNumber], function (err) {//null values must be filled with future implementation
         if (err) {
           reject(err);
           return;
