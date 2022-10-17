@@ -31,15 +31,15 @@ async function getQueues() {
   }
 }
 
-/* ENQUEUE, not working (Error 503 returned by the operation in the DB) */
-
+/* ENQUEUE */
 async function addElementInQueue(service, ticketTime) {
-  const url = APIURL + `/ticket/${service}`;
+  const url = APIURL + `/addToQueue`;
   try {
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
         "ticketTime": ticketTime, 
+        "idService": service
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -90,5 +90,5 @@ async function logIn(credentials) {
     }
   }
 
-const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue};
+const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue, getQueues};
 export default API;
