@@ -49,10 +49,11 @@ function ServiceRow(props) {
 
 function ServiceData(props) {
   const giveTicket = (s) => {
-    API.addElementInQueue(s.id, dayjs().format());
+    let clientWaitNumber = API.getUserForService(s.id) + 1; // number of clients already waiting for the service +1
+    API.addElementInQueue(s.id, dayjs().format(), clientWaitNumber);
 
     if (!props.busy) {
-      props.setMessage('Selected ticket for service: '+s.name);
+      props.setMessage('Your ticket: '+s.name+clientWaitNumber);
       props.setBusy(true);
       setTimeout(() => {
         props.setMessage("Ready for next client");
