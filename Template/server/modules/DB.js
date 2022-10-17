@@ -19,6 +19,7 @@ exports.getServicesPerOfficer = () => {
         return;
       }
       const officer_services = rows.map((r) => ({ id: r.id, idOfficer: r.idOfficer, idService: r.idService}));
+      console.log(officer_services);
       resolve(officer_services);
     });
   });
@@ -67,5 +68,19 @@ exports.addUserToQueue = (idService, ticketTime, idUser) => {
       });
     });
   };
+
+// add a new user when a service is selected
+exports.userServed = (idUser, turnTime) => {
+  return new Promise((resolve, reject) => {
+    const sql = 'UPDATE Queue SET turnTime=? WHERE Id=?';
+    db.run(sql, [turnTime, idUser/* JUST A STATIC VALUE */], function (err) {//null values must be filled with future implementation
+      if (err) {
+        reject(err);
+        return;
+      }
+      resolve(null);
+    });
+  });
+};
 
   
