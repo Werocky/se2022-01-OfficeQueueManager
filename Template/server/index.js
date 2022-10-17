@@ -74,6 +74,24 @@ app.post('/addToQueue',// isLoggedIn, []
   }
 });
 
+//served user
+app.put('/userServed',// isLoggedIn, []
+  async (req, res) => {
+  const errors = validationResult(res);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({error: 'cannot process request'});
+    }
+  const turnTime = req.body.turnTime;
+  const idUser = 3; //logic to assign id to users must be implemented
+  try {
+    await db.userServed(idUser, turnTime);
+    console.log(req.body);
+    res.status(201).end();
+  } catch(err) {
+    res.status(503).json({error: `Error during enqueue of user ${req.body.idUser}.`});
+  }
+});
+
 
 /*** Users APIs ***/
 
