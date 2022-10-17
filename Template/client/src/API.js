@@ -32,14 +32,15 @@ async function getQueues() {
 }
 
 /* ENQUEUE */
-async function addElementInQueue(service, ticketTime) {
+async function addElementInQueue(service, ticketTime, clientWaitNumber) {
   const url = APIURL + `/addToQueue`;
   try {
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
         "ticketTime": ticketTime, 
-        "idService": service
+        "idService": service,
+        "clientWaitNumber": clientWaitNumber,
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -54,6 +55,10 @@ async function addElementInQueue(service, ticketTime) {
   } catch (ex) {
     throw ex;
   }
+}
+
+async function getUserForService(idService) {
+  // TODO  
 }
 
 
@@ -90,5 +95,5 @@ async function logIn(credentials) {
     }
   }
 
-const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue, getQueues};
+const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue, getUserForService, getQueues};
 export default API;
