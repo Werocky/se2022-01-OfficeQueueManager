@@ -8,6 +8,8 @@ const passport = require('passport'); // auth middleware
 const LocalStrategy = require('passport-local').Strategy; // username and password for login
 const session = require('express-session'); // enable sessions
 const cors = require('cors');
+const serv=require('./modules/Services.js');
+const queue=require('./modules/Queue.js');
 
 // init express
 const app = new express();
@@ -39,7 +41,7 @@ app.get('/getServices', (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({error: 'cannot process request'});
   }
-  db.getServices()
+  serv.getServices()
     .then(list => res.json(list))
     .catch(() => res.status(500).end());
 });
@@ -80,7 +82,7 @@ app.get('/queue/:idService', (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({error: 'cannot process request'});
   }
-  db.getMaxUser(req.params.idService)
+  serv.getMaxUser(req.params.idService)
   .then(el => res.json(res))
   .catch(() => res.status(500).end());
 });

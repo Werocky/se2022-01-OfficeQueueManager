@@ -1,4 +1,6 @@
-function TicketPage(props) {
+import { Form, Button, Alert, Container, Row, Col ,Table} from 'react-bootstrap';
+
+function ShiftPage(props) {
     return (
         props.services.map((s) => <ServiceTab service={s} key={s.id} setMessage={props.setMessage} />)
     );
