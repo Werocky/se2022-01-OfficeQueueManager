@@ -32,13 +32,13 @@ exports.getServicesPerOfficer = () => {
 
     exports.getMaxUser = (idService) => {
         return new Promise((Resolve, reject) => {
-          const sql = 'SELECT MAX(clientWaitNumber) FROM Queue WHERE service=?';
+          const sql = 'SELECT MAX(clientNumber) FROM Queue WHERE service=?';
           db.all(sql, [idService],(err, row) => {
             if(err) {
               reject(err);
-              return;
+              
             }
-            return row;
+             Resolve(row == undefined ? 0 : row);
           } )
         })
       }
