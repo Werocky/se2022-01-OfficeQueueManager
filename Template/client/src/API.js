@@ -68,7 +68,7 @@ async function getUserForService(idService) {
 }
 
 
-/* LOGIN FUNCTIONS, not linked to any endpoint on server yet */
+/* LOGIN FUNCTIONS */
 async function logIn(credentials) {
     let response = await fetch((APIURL+'/sessions'), {
       method: 'POST',

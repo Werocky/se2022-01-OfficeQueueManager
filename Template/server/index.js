@@ -100,8 +100,8 @@ app.post('/addToQueue',// isLoggedIn, []
   const ticketTime = req.body.ticketTime;
   const clientWaitNumber = req.body.clientWaitNumber;
   try {
-    await queue.addUserToQueue(3/* TODO: STATIC RANDOM VALUE */, idService, ticketTime, clientWaitNumber);
-    console.log(req.body);
+    await queue.addUserToQueue(9/* TODO: STATIC RANDOM VALUE */, idService, ticketTime, clientWaitNumber);
+   // console.log(req.body);
     res.status(201).end();
   } catch(err) {
     res.status(503).json({error: `Error during enqueue`});

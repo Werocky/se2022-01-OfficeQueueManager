@@ -47,8 +47,8 @@ function ServiceRow(props) {
   );
 }
 
-function ServiceData(props) {
-  const giveTicket = (s) => {
+ function ServiceData(props) {
+   const giveTicket = (s) => {
     let clientWaitNumber = API.getUserForService(s.id) + 1; // number of clients already waiting for the service +1
     API.addElementInQueue(s.id, dayjs().format(), clientWaitNumber);
 

@@ -32,9 +32,9 @@ exports.getServices = () => {
 //should be moved to QUEUE
 exports.getMaxUser = (idService) => {
   return new Promise(async(resolve, reject) => {
-    const sql = 'SELECT clientNumber FROM Queue WHERE service=? ORDER BY clientNumber DESC LIMIT 1';
+    const sql = 'SELECT clientNumber FROM Queue WHERE service=? ORDER BY clientNumber DESC';
     db.get(sql, [idService],(err, row) => {
-      console.log(row)
+      //console.log(row)
       if(err) {
         reject(err);
         
