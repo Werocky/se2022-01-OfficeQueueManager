@@ -83,7 +83,7 @@ app.get('/queue/:idService', (req, res) => {
     return res.status(422).json({error: 'cannot process request'});
   }
   serv.getMaxUser(req.params.idService)
-  .then(el => res.json(res))
+  .then(el => res.json(el))
   .catch(() => res.status(500).end());
 });
 

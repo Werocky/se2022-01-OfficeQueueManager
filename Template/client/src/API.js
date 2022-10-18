@@ -15,7 +15,7 @@ async function getServices() {
   const response = await fetch(APIURL+'/getServices');
   const services = await response.json();
   if (response.ok) {
-    return services.map((l) => ({id: l.id, name: l.name, tr: l.tr}) )
+    return services.map((l) => ({id: l.Id, name: l.name, tr: l.tr}) )
   } else {
     throw services; //which will contain an error if it is the case
   }
