@@ -144,7 +144,7 @@ describe("Served client",()=>{
         await queue.emptyQueue();
     });
 
-    test.only("correctly Serve a client",async()=>{
+    test("correctly Serve a client",async()=>{
         await expect(queue.userServed(12,1,89898)).resolves.toEqual("client 12 Served");
     });
 
