@@ -1,9 +1,9 @@
 const db = require('../modules/DB');
-describe("empty test", ()=>{
+describe("Db creation", ()=>{
     test(
         
-        "empty", async()=>{
-            await expect(true).not.toBe(null); 
+        "DB creation test", async()=>{
+           expect(db.createConnection()).resolves.not.toBe(null) ;
         }   
     );
     
