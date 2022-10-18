@@ -10,6 +10,38 @@ const session = require('express-session'); // enable sessions
 const cors = require('cors');
 const serv=require('./modules/Services.js');
 const queue=require('./modules/Queue.js');
+const authN = require('./modules/authN.js');
+
+/*** Set up Passport ***/
+
+//configurating function to verify login and password
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    authN.checkCredentials(username, password).then((user) => {
+      if (!user)
+        return done(null, false, { message: 'Incorrect username and/or password.' });
+        
+      return done(null, user);
+    })
+  }
+));
+
+// getting session from user 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+// getting user from session
+passport.deserializeUser((id, done) => {
+  userDao.getUserById(id)
+    .then(user => {
+      done(null, user); 
+    }).catch(err => {
+      done(err, null);
+    });
+});
+
+/*** Ending setting up passport***/ 
 
 // init express
 const app = new express();
@@ -30,7 +62,7 @@ app.get('/getServicesPerOfficer', (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({error: 'cannot process request'});
   }
-  db.getServicesPerOfficer()
+  serv.getServicesPerOfficer()
     .then(list => res.json(list))
     .catch(() => res.status(500).end());
 });
@@ -52,7 +84,7 @@ app.get('/getQueues', (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({error: 'cannot process request'});
   }
-  db.getQueues()
+  queue.getQueues()
     .then(list => res.json(list))
     .catch(() => res.status(500).end());
 });
@@ -68,7 +100,7 @@ app.post('/addToQueue',// isLoggedIn, []
   const ticketTime = req.body.ticketTime;
   const clientWaitNumber = req.body.clientWaitNumber;
   try {
-    await db.addUserToQueue(idService, ticketTime, clientWaitNumber);
+    await queue.addUserToQueue(idService, ticketTime, clientWaitNumber);
     console.log(req.body);
     res.status(201).end();
   } catch(err) {
@@ -97,7 +129,7 @@ app.put('/userServed',// isLoggedIn, []
   const turnTime = req.body.turnTime;
   const idUser = 3; //logic to assign id to users must be implemented
   try {
-    await db.userServed(idUser, turnTime);
+    await queue.userServed(idUser, turnTime);
     console.log(req.body);
     res.status(201).end();
   } catch(err) {
