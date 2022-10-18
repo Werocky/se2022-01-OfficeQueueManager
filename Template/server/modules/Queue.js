@@ -1,8 +1,6 @@
 'use strict'
 
 const db = require('./DB').db;
-import dayjs from 'dayjs'
-
 
 // class queue{
 
@@ -57,38 +55,63 @@ exports.getQueues = () => {
       db.all(sql, [], (err, rows) => {
         if (err) {
           reject(err);
-          return;
+          
         }
-        const queues = rows.map((r) => ({ userId: r.userId, idService: r.idService, ticketTime: r.ticketTime, turnTime: r.turnTime}));
+        const queues = rows.map((r) => ({ Id:r.Id, clientNumber: r.clientNumber, service: r.service, ticketTime: r.ticketTime, turnTime: r.turnTime}));
         resolve(queues);
       });
     });
   };
 
   // add a new user when a service is selected
-exports.addUserToQueue = (idService, ticketTime, idUser) => {
+exports.addUserToQueue = (id, idService, ticketTime, clientNumber) => {
     return new Promise((resolve, reject) => {
-      const sql = 'INSERT INTO Queue VALUES(?, ?, ?, ?)';
-      db.run(sql, [idUser/* JUST A STATIC VALUE */, idService, ticketTime, 0], function (err) {//null values must be filled with future implementation
+      const sql = 'INSERT INTO Queue VALUES(?,?, ?, ?, ?)';
+      db.run(sql, [id, idService, ticketTime, 0, clientNumber], function (err) {//null values must be filled with future implementation
         if (err) {
           reject(err);
-          return;
+          
         }
-        resolve(null);
+        resolve("user added to queue");
       });
     });
   };
 
   // add a new user when a service is selected
-exports.userServed = (idUser, turnTime) => {
+exports.userServed = (idUser, serviceId, turnTime) => {
     return new Promise((resolve, reject) => {
-      const sql = 'UPDATE Queue SET turnTime=? WHERE Id=?';
-      db.run(sql, [turnTime, idUser/* JUST A STATIC VALUE */], function (err) {//null values must be filled with future implementation
+      const sql = 'UPDATE Queue SET turnTime=? WHERE service=? AND clientNumber=?';
+      db.run(sql, [turnTime, serviceId, idUser], function (err) {//null values must be filled with future implementation
         if (err) {
           reject(err);
-          return;
+          
         }
-        resolve(null);
+        resolve("client "+ idUser + " Served");
       });
     });
   };
+
+  exports.getMaxIdQueues=()=>{
+    return new Promise((resolve,reject)=>{
+      const sql= "SELECT Id FROM Queue ORDER BY Id DESC LIMIT 1"
+      db.get(sql,(err,row)=>{
+        if (err)
+                reject(err);
+            else
+                resolve(row == undefined ? 0 : row.Id);
+
+      })
+    });
+  };
+  exports.emptyQueue=()=>{
+    return new Promise((resolve,reject)=>{
+      const sql= "DELETE FROM Queue"
+      db.run(sql,[],(err)=>{
+        if (err)
+                reject(err);
+            else
+                resolve("emptied Queue");
+
+      })
+    });
+  }
