@@ -6,6 +6,7 @@ import { Alert } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import {LogoutButton } from './LoginPage';
 import { TicketPage } from './TicketPage';
+import {ShiftPage} from './ShiftPage';
 import API from './API';
 
 
@@ -69,6 +70,7 @@ function App2(){
         <Routes>
        
         <Route path='/' element={loggedIn?<Navigate to='/officerPage'/> :<TicketPage services={services} setMessage={setMessage}/>} />
+        <Route path='/shifts' element={<ShiftPage services={services} setMessage={setMessage}/>}/>
         </Routes>
         </>
    

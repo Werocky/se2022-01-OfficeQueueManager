@@ -58,7 +58,7 @@ function ServiceData(props) {
       setTimeout(() => {
         props.setMessage("Ready for next client");
         props.setBusy(false);
-      }, 5000)
+      }, 10000)
     }
   }
   return (
