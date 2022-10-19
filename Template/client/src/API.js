@@ -57,8 +57,8 @@ async function addElementInQueue(service, ticketTime/*, clientWaitNumber*/) {
   }
 }
 
-async function getUserForService(idService) {
-  const response = await fetch(APIURL+`/queue/${idService}`);
+async function getUserForService(service) {
+  const response = await fetch(APIURL+`/queue/${service}`);
   const max_user = await response.json(); // number of client waiting for a specific service
   if (response.ok) {
     return max_user; // it needs to be formatted

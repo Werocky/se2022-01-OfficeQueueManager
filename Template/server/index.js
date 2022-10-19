@@ -130,14 +130,18 @@ app.post('/addToQueue',// isLoggedIn, []
 });
 
 // get max user
-app.get('/queue/:idService', (req, res) => {
+app.get('/queue/:service', async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({error: 'cannot process request'});
   }
-  serv.getMaxUser(req.params.idService)
-  .then(el => res.json(el))
-  .catch(() => res.status(500).end());
+  try {
+    const idService = req.params.service;
+    const clientWaitNumber = await serv.getMaxUser(idService);
+    res.json(clientWaitNumber);
+  } catch (err) {
+    res.status(503).json({error: `Error`});
+  }
 });
 
 //served user
