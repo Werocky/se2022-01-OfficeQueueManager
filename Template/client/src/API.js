@@ -32,15 +32,15 @@ async function getQueues() {
 }
 
 /* ENQUEUE */
-async function addElementInQueue(service, ticketTime, clientWaitNumber) {
+async function addElementInQueue(service, ticketTime/*, clientWaitNumber*/) {
   const url = APIURL + '/addToQueue';
   try {
     const response = await fetch(url, {
       method: 'POST',
       body: JSON.stringify({
         "ticketTime": ticketTime, 
-        "idService": service,
-        "clientWaitNumber": clientWaitNumber,
+        "idService": service
+        //"clientWaitNumber": clientWaitNumber,
       }),
       headers: {
         'Content-Type': 'application/json',

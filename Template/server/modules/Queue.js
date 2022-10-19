@@ -98,11 +98,10 @@ exports.userServed = (idUser, serviceId, turnTime) => {
       const sql= "SELECT Id FROM Queue ORDER BY Id DESC LIMIT 1"
       db.get(sql,(err,row)=>{
         if (err)
-                reject(err);
-            else
-                resolve(row == undefined ? 0 : row.Id);
-
-      })
+            reject(err);
+        else
+            resolve(row == undefined ? 0 : row.Id);
+        })
     });
   };
   exports.emptyQueue=()=>{
