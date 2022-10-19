@@ -116,3 +116,20 @@ exports.userServed = (idUser, serviceId, turnTime) => {
       })
     });
   }
+
+  exports.getOfficerById = (id) => {
+    return new Promise((resolve, reject) => {
+      const sql = 'SELECT * FROM Officer WHERE Id = ?';
+        db.get(sql, [id], (err, row) => {
+          if (err) 
+            reject(err);
+          else if (row === undefined)
+            resolve({error: 'User not found.'});
+          else {
+            // by default, the local strategy looks for "username": not to create confusion in server.js, we can create an object with that property
+            const officer = {Id: row.Id, email: row.email}
+            resolve(officer);
+          }
+      });
+    });
+  };

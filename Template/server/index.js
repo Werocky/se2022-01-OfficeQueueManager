@@ -28,12 +28,12 @@ passport.use(new LocalStrategy(
 
 // getting session from user 
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.Id);
 });
 
 // getting user from session
 passport.deserializeUser((id, done) => {
-  userDao.getUserById(id)
+  queue.getOfficerById(id)
     .then(user => {
       done(null, user); 
     }).catch(err => {
@@ -41,12 +41,21 @@ passport.deserializeUser((id, done) => {
     });
 });
 
+// checking if the request is coming from an authenticated user or not, so to allow authorized users to perform actions
+const isLoggedIn = (req, res, next) => {
+  if(req.isAuthenticated())
+    return next();
+  
+  return res.status(401).json({ error: 'not authenticated'});
+}
+
 /*** Ending setting up passport***/ 
 
 // init express
 const app = new express();
 const port = 3001;
 
+//activating middlewares
 app.use(morgan('dev'));
 app.use(express.json());
 const corsOptions = {
@@ -54,6 +63,17 @@ const corsOptions = {
   credentials: true,
 };
 app.use(cors(corsOptions));
+
+// set up the session
+app.use(session({
+  secret: 'a secret sentence not to share with anybody and anywhere, used to sign the session ID cookie',
+  resave: false,
+  saveUninitialized: false 
+}));
+
+//initializing passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 /* API */
 //get service-officer binding
@@ -144,9 +164,7 @@ app.put('/userServed',// isLoggedIn, []
 // POST /sessions 
 // login
 app.post('/sessions', function(req, res, next) {
-  console.log(req.body);
   passport.authenticate('local', (err, user, info) => {
-    console.log(user);
     if (err)
       return next(err);
       if (!user) {

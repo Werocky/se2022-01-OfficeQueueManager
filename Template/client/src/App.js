@@ -60,7 +60,10 @@ function App2(){
   }
 
   const doLogOut = async () => {
-  
+    await API.logOut();
+      setLoggedIn(false);
+      setUser({});
+      navigate('/');
   }
   return (
     <>
