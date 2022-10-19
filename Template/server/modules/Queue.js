@@ -79,16 +79,16 @@ exports.addUserToQueue = (id, idService, ticketTime, clientNumber) => {
     });
   };
 
-  // add a new user when a service is selected
-exports.userServed = (idUser, serviceId, turnTime) => {
+  // set turnTime for the user that has been served
+exports.userServed = (turnTime, service, clientWaitNumber) => {
     return new Promise((resolve, reject) => {
       const sql = 'UPDATE Queue SET turnTime=? WHERE service=? AND clientNumber=?';
-      db.run(sql, [turnTime, serviceId, idUser], function (err) {//null values must be filled with future implementation
+      db.run(sql, [turnTime, service, clientWaitNumber], function (err) {//null values must be filled with future implementation
         if (err) {
           reject(err);
           
         }
-        resolve("client "+ idUser + " Served");
+        resolve("client "+ clientWaitNumber + " Served");
       });
     });
   };
@@ -104,6 +104,7 @@ exports.userServed = (idUser, serviceId, turnTime) => {
         })
     });
   };
+  
   exports.emptyQueue=()=>{
     return new Promise((resolve,reject)=>{
       const sql= "DELETE FROM Queue"
