@@ -1,10 +1,20 @@
 import { Form, Button, Alert, Container, Row, Col ,Table} from 'react-bootstrap';
+import {useEffect} from 'react';
 
 function ShiftPage(props) {
+  useEffect(() => {
+    setInterval(()=>
+    {
+      console.log("intervallo");
+    },1000);
+  }, [])
     return (
         props.services.map((s) => <ServiceTab service={s} key={s.id} setMessage={props.setMessage} />)
     );
   }
+
+  
+
 function ServiceTab(props)
 {
     return (
@@ -15,8 +25,8 @@ function ServiceTab(props)
                 <Table>
                   <thead>
                     <tr>
-                      <th>Service</th>
-                    </tr>
+                      <th>{props.service.name}</th>
+                      </tr>
                   </thead>
                   <tbody>
                     {

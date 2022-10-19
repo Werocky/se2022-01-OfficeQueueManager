@@ -4,9 +4,10 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route,Navigate, useNavigate } from 'react-router-dom';
 import { Alert } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
-import {LogoutButton } from './LoginPage';
+import { LoginForm, LogoutButton } from './LoginPage';
 import { TicketPage } from './TicketPage';
 import {ShiftPage} from './ShiftPage';
+import { OfficerPage } from './OfficerPage';
 import API from './API';
 
 
@@ -26,29 +27,36 @@ function App() {
 }
 function App2(){
   const [loggedIn, setLoggedIn] = useState(false);
+  const [error, setError] = useState('');
+  const [errorLogin ,setErrorLogin] = useState(false);
   const [message, setMessage] = useState('');
   const [user,setUser]=useState([]);
   const [services, setServices] = useState([]);
   const navigate=useNavigate();
 
   useEffect(() => {
-    if(!loggedIn)
+    if(!loggedIn){
       API.getServices()
         .then((servicesList) => {
           setServices(servicesList);
         })
         .catch(/* error handling */)
+      }
   }, [loggedIn])
 
   const doLogIn = (credentials) => {
-   /* API.logIn(credentials)
+    API.logIn(credentials)
       .then(user => {
-       
+        setLoggedIn(true);
+        setUser(user);
+        setMessage('');
+        navigate('/officerPage');
       })
       .catch(err => {
-      
+       
+        setMessage(err);
       }
-      )*/
+      )
   }
 
   const doLogOut = async () => {
@@ -71,6 +79,8 @@ function App2(){
        
         <Route path='/' element={loggedIn?<Navigate to='/officerPage'/> :<TicketPage services={services} setMessage={setMessage}/>} />
         <Route path='/shifts' element={<ShiftPage services={services} setMessage={setMessage}/>}/>
+        <Route path='/officerPage' element={!loggedIn?<Navigate to='/'/> :<OfficerPage setMessage={setMessage}/>} />
+        <Route path='/login' element={loggedIn ? <Navigate to='/officerPage' /> : <LoginForm login={doLogIn} error={errorLogin} setErrorLogin={setErrorLogin} message={message}/>} />
         </Routes>
         </>
    

@@ -144,7 +144,9 @@ app.put('/userServed',// isLoggedIn, []
 // POST /sessions 
 // login
 app.post('/sessions', function(req, res, next) {
+  console.log(req.body);
   passport.authenticate('local', (err, user, info) => {
+    console.log(user);
     if (err)
       return next(err);
       if (!user) {

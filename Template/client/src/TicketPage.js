@@ -33,6 +33,11 @@ function TicketTable(props) {
             </Table>
           </Col>
         </Row>
+        <Row>
+          <Col>
+           <Button onClick={() => navigate('/login')}>Login</Button> 
+          </Col>
+        </Row>
 
       </Container>
     </>
