@@ -141,20 +141,24 @@ app.get('/queue/:idService', (req, res) => {
 });
 
 //served user
-app.put('/userServed',// isLoggedIn, []
+app.put('/userServed', isLoggedIn, [
+  check('turnTime').notEmpty(),
+  check('service').notEmpty(),
+  check('clientWaitNumber').notEmpty()
+],
   async (req, res) => {
   const errors = validationResult(res);
     if (!errors.isEmpty()) {
       return res.status(422).json({error: 'cannot process request'});
     }
   const turnTime = req.body.turnTime;
-  const idUser = 3; //logic to assign id to users must be implemented
+  const service = req.body.service;
+  const clientWaitNumber = req.body.clientWaitNumber;
   try {
-    await queue.userServed(idUser, turnTime);
-    console.log(req.body);
+    await queue.userServed(turnTime, service, clientWaitNumber);
     res.status(201).end();
   } catch(err) {
-    res.status(503).json({error: `Error during enqueue of user ${req.body.idUser}.`});
+    res.status(503).json({error: `Error serving client ${clientWaitNumber}.`});
   }
 });
 
