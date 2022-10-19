@@ -53,7 +53,8 @@ function LoginForm(props) {
 function LogoutButton(props) {
   return(
     <Col>
-      <span>User: {props.user?.user}</span>{' '}<Button variant="outline-primary" onClick={props.logout}>Logout</Button>
+
+      <span>User: {props.user?.email}</span>{' '}<Button variant="outline-primary" onClick={props.logout}>Logout</Button>
     </Col>
   )
 }

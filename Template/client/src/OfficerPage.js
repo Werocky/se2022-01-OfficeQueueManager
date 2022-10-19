@@ -4,14 +4,15 @@ import API from './API';
 
 function OfficerPage(props)
 {
+  const [services,setServices]=useState();
     const callNext = (s) => 
     {
-        console.log(services);
-    }
-
-
-
-    const [services,setServices]=useState();
+        API.getServicesPerOfficer
+        .then((servicesList) => {
+          setServices(servicesList);
+        })
+        .catch(/* error handling */)
+      }
     useEffect(() => {
         API.getServicesPerOfficer()
         .then((servicesList) => {
