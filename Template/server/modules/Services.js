@@ -1,6 +1,6 @@
 const db = require('./DB').db;
 
-//get the full list of available courses
+//get the full list of available services per officer
 exports.getServicesPerOfficer = () => {
   return new Promise(async(resolve, reject) => {
     const sql = 'SELECT * FROM ServicesPerOfficer';
@@ -9,8 +9,23 @@ exports.getServicesPerOfficer = () => {
         reject(err);
         return;
       }
-      const officer_services = rows.map((r) => ({ id: r.id, idOfficer: r.idOfficer, idService: r.idService}));
+      const officer_services = rows.map((r) => ({ Id: r.Id, idOfficer: r.idOfficer, idService: r.idService}));
       resolve(officer_services);
+    });
+  });
+};
+
+//get the full list of available services per officer
+exports.getServicesPerId = (Id) => {
+  return new Promise(async(resolve, reject) => {
+    const sql = 'SELECT * FROM ServicesPerOfficer WHERE idOfficer=? ';
+    db.all(sql, [Id], (err, rows) => {
+      if (err) {
+        reject(err);
+        return;
+      }
+      const servicesWithId = rows.map((r) => ({ Id: r.Id, idOfficer: r.idOfficer, idService: r.idService}));
+      resolve(servicesWithId);
     });
   });
 };

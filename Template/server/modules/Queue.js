@@ -104,7 +104,7 @@ exports.userServed = (turnTime, service, clientWaitNumber) => {
         })
     });
   };
-  
+
   exports.emptyQueue=()=>{
     return new Promise((resolve,reject)=>{
       const sql= "DELETE FROM Queue"
@@ -130,6 +130,23 @@ exports.userServed = (turnTime, service, clientWaitNumber) => {
             // by default, the local strategy looks for "username": not to create confusion in server.js, we can create an object with that property
             const officer = {Id: row.Id, email: row.email}
             resolve(officer);
+          }
+      });
+    });
+  };
+
+  exports.getNextClientForService = (service) => {
+    return new Promise((resolve, reject) => {
+      const sql = 'SELECT * FROM Queue WHERE service = ? AND turnTime = ? ORDER BY clientNumber ';
+        db.get(sql, [service, 0], (err, row) => {
+          if (err) 
+            reject(err);
+          else if (row === undefined)
+            resolve({error: 'User not found.'});
+          else {
+            // by default, the local strategy looks for "username": not to create confusion in server.js, we can create an object with that property
+            const clientNumber = row.clientNumber;
+            resolve(clientNumber);
           }
       });
     });

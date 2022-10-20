@@ -11,6 +11,7 @@ const cors = require('cors');
 const serv=require('./modules/Services.js');
 const queue=require('./modules/Queue.js');
 const authN = require('./modules/authN.js');
+const dayjs = require('dayjs');
 
 /*** Set up Passport ***/
 
@@ -130,18 +131,14 @@ app.post('/addToQueue',// isLoggedIn, []
 });
 
 // get max user
-app.get('/queue/:service', async (req, res) => {
+app.get('/queue/:idService', (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(422).json({error: 'cannot process request'});
   }
-  try {
-    const idService = req.params.service;
-    const clientWaitNumber = await serv.getMaxUser(idService);
-    res.json(clientWaitNumber);
-  } catch (err) {
-    res.status(503).json({error: `Error`});
-  }
+  serv.getMaxUser(req.params.idService)
+  .then(el => res.json(el))
+  .catch(() => res.status(500).end());
 });
 
 //served user
@@ -164,6 +161,29 @@ app.put('/userServed', isLoggedIn, [
   } catch(err) {
     res.status(503).json({error: `Error serving client ${clientWaitNumber}.`});
   }
+});
+
+//get next client for the requested service
+app.get('/getNextClient', isLoggedIn, [] ,
+  async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({error: 'cannot process request'});
+    }
+    const officerId = req.user.Id;
+    let rows = await serv.getServicesPerId(officerId);
+    let services = [];
+    rows.forEach(r => services.push(r.idService));
+    let queues = await queue.getQueues();
+    let max_waiting_time = 0;
+    let service_to_serve = 0;
+    queues.forEach(element => {
+      if((dayjs().diff(dayjs(element.ticketTime))) > max_waiting_time && services.includes(element.service)){max_waiting_time = dayjs().format() - element.ticketTime; service_to_serve = element.service;}
+    });
+    console.log(service_to_serve);
+    queue.getNextClientForService(service_to_serve)
+      .then(next => res.json(next))
+      .catch(() => res.status(500).end());
 });
 
 
