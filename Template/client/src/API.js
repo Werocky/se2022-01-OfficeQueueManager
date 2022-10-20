@@ -79,7 +79,7 @@ async function getNextClient()
 }
 
 async function getCurrentUser(serviceId) {
-  const response = await fetch(APIURL+`/getCurrentUser/:serviceId`);
+  const response = await fetch(APIURL+`/getCurrentUser/${serviceId}`);
   const id= await response.json();
   if(response.ok)
     return id;
