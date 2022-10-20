@@ -59,12 +59,12 @@ function ServiceRow(props) {
     API.addElementInQueue(s.id, dayjs().format()/*, clientWaitNumber*/);
 
     if (!props.busy) {
-      props.setMessage('Your ticket: '+s.name+clientWaitNumber);
+      props.setMessage('Your ticket: '+s.name+" your number in the queue is: " +clientWaitNumber);
       props.setBusy(true);
       setTimeout(() => {
         props.setMessage("Ready for next client");
         props.setBusy(false);
-      }, 10000)
+      }, 3000)
     }
   }
   return (

@@ -106,3 +106,15 @@ exports.addNewService=(id, name, tr)=>{
     })
   });
 }
+
+exports.getCurrentUser=(serviceId)=>{
+  return new Promise(async(resolve,reject)=>{
+    const sql= "SELECT max(clientNumber) as cNum from Queue where turnTime=0 and service=?"
+      db.get(sql,[serviceId] ,  (err,row)=> {  // <-- NB: function, NOT arrow function so this.lastID works
+        if (err) {
+          reject(err);
+          return;
+        }
+      resolve(row.cNum);
+      })
+    })};

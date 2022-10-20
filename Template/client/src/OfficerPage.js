@@ -4,12 +4,12 @@ import API from './API';
 
 function OfficerPage(props)
 {
-  const [services,setServices]=useState();
     const callNext = () => 
     {
         API.getNextClient()
         .then((id)=>
         {
+          console.log(id);
           props.setMessage("Next client is "+id);
         })
       }

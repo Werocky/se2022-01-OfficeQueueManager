@@ -187,6 +187,12 @@ app.get('/getNextClient', isLoggedIn, [] ,
     }
 });
 
+app.get('/getCurrentUser/:idService', (req, res) => {
+  serv.getCurrentUser(req.params.idService)
+  .then(el => res.json(el))
+  .catch(() => res.status(500).end());
+});
+
 
 /*** Users APIs ***/
 

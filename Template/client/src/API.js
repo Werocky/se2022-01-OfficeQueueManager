@@ -78,6 +78,15 @@ async function getNextClient()
  
 }
 
+async function getCurrentUser(serviceId) {
+  const response = await fetch(APIURL+`/getCurrentUser/${serviceId}`);
+  const id= await response.json();
+  if(response.ok)
+    return id;
+  else
+    throw id;
+}
+
 /* LOGIN FUNCTIONS */
 async function logIn(credentials) {
     let response = await fetch((APIURL+'/sessions'), {
@@ -111,5 +120,5 @@ async function logIn(credentials) {
     }
   }
 
-const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue, getUserForService, getQueues,getNextClient};
+const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue, getUserForService, getQueues,getNextClient, getCurrentUser};
 export default API;
