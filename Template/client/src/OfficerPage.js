@@ -4,7 +4,6 @@ import API from './API';
 
 function OfficerPage(props)
 {
-  const [services,setServices]=useState();
     const callNext = () => 
     {
         API.getNextClient()
