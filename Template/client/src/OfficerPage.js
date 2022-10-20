@@ -10,6 +10,7 @@ function OfficerPage(props)
         API.getNextClient()
         .then((id)=>
         {
+          console.log(id);
           props.setMessage("Next client is "+id);
         })
       }
