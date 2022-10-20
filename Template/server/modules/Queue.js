@@ -137,6 +137,7 @@ exports.userServed = (turnTime, service, clientWaitNumber) => {
 
   exports.getNextClientForService = (service) => {
     return new Promise((resolve, reject) => {
+      console.log("service", service);
       const sql = 'SELECT * FROM Queue WHERE service = ? AND turnTime = ? ORDER BY clientNumber ';
         db.get(sql, [service, 0], (err, row) => {
           if (err) 

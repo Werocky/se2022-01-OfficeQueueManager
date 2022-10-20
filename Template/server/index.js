@@ -122,7 +122,6 @@ app.post('/addToQueue',// isLoggedIn, []
   try {
     const id = await queue.getMaxIdQueues();
     const clientWaitNumber = await serv.getMaxUser(idService);
-    console.log(clientWaitNumber);
     await queue.addUserToQueue(id + 1, idService, ticketTime, clientWaitNumber + 1);
     res.status(201).end();
   } catch(err) {
@@ -174,16 +173,18 @@ app.get('/getNextClient', isLoggedIn, [] ,
     let rows = await serv.getServicesPerId(officerId);
     let services = [];
     rows.forEach(r => services.push(r.idService));
+    console.log(services);
     let queues = await queue.getQueues();
-    let max_waiting_time = 0;
     let service_to_serve = 0;
-    queues.forEach(element => {
-      if((dayjs().diff(dayjs(element.ticketTime))) > max_waiting_time && services.includes(element.service)){max_waiting_time = dayjs().format() - element.ticketTime; service_to_serve = element.service;}
-    });
-    console.log(service_to_serve);
-    queue.getNextClientForService(service_to_serve)
-      .then(next => res.json(next))
-      .catch(() => res.status(500).end());
+    let longest = 0;
+    let current = 0;
+    services.forEach(s => {queues.forEach(r => {console.log(r, s); if(r.service == s && r.turnTime == 0) {current = current + 1;console.log(r);}}); if(current > longest) {longest = current; service_to_serve = s;}});
+    try {
+      let clientNumber = await queue.getNextClientForService(service_to_serve);
+      res.status(201).json(clientNumber);
+    } catch(err) {
+      res.status(503).json({error: `Error serving client ${clientNumber}.`});
+    }
 });
 
 

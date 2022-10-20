@@ -57,6 +57,19 @@ exports.getMaxUser = (idService) => {
     } )
   })
 }
+
+exports.getMaxUserToServe = (idService) => {
+  return new Promise(async(resolve, reject) => {
+    const sql = 'SELECT clientNumber FROM Queue WHERE service=? AND turnTime=? ORDER BY clientNumber DESC LIMIT 1';
+    db.get(sql, [idService, 0],(err, row) => {
+      if(err) {
+        reject(err);
+        
+      }
+        resolve(row == undefined ? 0 : row.clientNumber);
+    } )
+  })
+}
   
 exports.emptyServicesQueue=()=>{
   return new Promise(async(resolve,reject)=>{
