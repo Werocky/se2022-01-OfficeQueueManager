@@ -67,6 +67,16 @@ async function getUserForService(service) {
   }
 }
 
+async function getNextClient()
+{
+  const response = await fetch(APIURL+`/getNextClient`,{credentials:'include'});
+  const id= await response.json();
+  if(response.ok)
+    return id;
+  else
+    throw id;
+ 
+}
 
 /* LOGIN FUNCTIONS */
 async function logIn(credentials) {
@@ -101,5 +111,5 @@ async function logIn(credentials) {
     }
   }
 
-const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue, getUserForService, getQueues};
+const API = {logIn, logOut, getUserInfo, getServices, getServicesPerOfficer, addElementInQueue, getUserForService, getQueues,getNextClient};
 export default API;
