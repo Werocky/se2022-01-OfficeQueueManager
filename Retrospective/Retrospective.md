@@ -33,7 +33,7 @@ Definition of Done:
 |------|------------|--------------|
 | _Database for the services_  |  _1h_  |  _1d 2h_  |
 | _Website layout_   |  _2h_  | _2h 30m_   |
-| _Rest API_  | _2h_   | _2h 30m_   |
+| _Rest API_  | _2h_   | _6h 35m_   |
 | _Queue logic_  |  _2h_  | _7h 40m_   |
 
 ##### Officer-Call next client
