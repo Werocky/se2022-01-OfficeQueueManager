@@ -48,7 +48,7 @@ Definition of Done:
 
 -------------- TODO -----------
 - Hours per task average: (estimate)1.89 (actual)3.89, standard deviation: (estimate)0.031 (actual)2.88 (estimate and actual)
-- Total task estimation error ratio: (1 + $8\times2$) / (10 + 4*2 + 6 + 7 + 2*1) - 1
+- Total task estimation error ratio: (1 + $8\times2$) / (10 + 4*2 + 6 + 7 + $2\times1$) - 1
 
   
 ## QUALITY MEASURES 
