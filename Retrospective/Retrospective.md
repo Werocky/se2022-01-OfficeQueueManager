@@ -79,7 +79,7 @@ standard deviation: (actual)2.68
 |------|------------|-----|----|
 | Update Queues| 1h30m-2h | 1h 30m | 9 |
 | Officer Call next client  | 1h30m -2h | 1h 30m | 5 |
-| Rest API | ---| 1h 20m | ---- |
+| Rest API | 2h | 2h 20m | ---- |
 
 
 File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
@@ -90,11 +90,11 @@ All files    |   66.07 |     40.9 |   77.77 |   68.22 |
  Services.js |      50 |    31.81 |   53.33 |   51.42 | 5-13,20-28,39-40,53,62-69,79,92,111-118    
 
 - E2E testing:
-  - Total hours estimated
-  - Total hours spent
+  - Total hours estimated: 3h 
+  - Total hours spent: 2h
 - Code review 
-  - Total hours estimated 
-  - Total hours spent
+  - Total hours estimated: 2h 
+  - Total hours spent: 1h30m
   
 
 
