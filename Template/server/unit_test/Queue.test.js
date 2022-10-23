@@ -124,6 +124,7 @@ describe("add new client to Queue", ()=>{
         await queue.emptyQueue();
     });
     test("add new client to Queue correctly",async()=>{
+        await queue.emptyQueue();
         await expect(queue.addUserToQueue(0,1,12345,12)).resolves.toEqual("user added to queue")
         await expect(q=queue.getQueues()).resolves.toEqual([{Id:0,clientNumber:12,service:1, ticketTime:12345,turnTime:0}]);
     })
@@ -145,7 +146,7 @@ describe("Served client",()=>{
     });
 
     test("correctly Serve a client",async()=>{
-        await expect(queue.userServed(12,1,89898)).resolves.toEqual("client 12 Served");
+        await expect(queue.userServed(12,1,89898)).resolves.toEqual("client 89898 Served");
     });
 
 })

@@ -16,23 +16,23 @@ afterAll(async () => {
 });
 
 describe("add service",()=>{
-    test("add a new service",()=>{
-        expect(serviceQueue.addNewService(1,'name',null)).resolves.toEqual('inserted new service');
+    test("add a new service",async()=>{
+        await expect(serviceQueue.addNewService(1,'name',null)).resolves.toEqual('inserted new service');
     })
 })
 
 describe("Get services",()=>{
 
     test("get all services",async()=>{
-
+        await serviceQueue.emptyServicesQueue();
         await serviceQueue.addNewService(1,'serviceOne',null);
         await serviceQueue.addNewService(2,'serviceTwo',null);
         await serviceQueue.addNewService(3,'serviceThree',null);
 
         await expect(s=serviceQueue.getServices()).resolves.toEqual([{Id:1,name:'serviceOne',tr:null},
         {Id:2,name:'serviceTwo',tr:null},
-        {Id:3,name:'serviceThree',tr:null}])
-        console.log(s)
+        {Id:3,name:'serviceThree',tr:null}]);
+        //console.log(s)
     })
 })
 
