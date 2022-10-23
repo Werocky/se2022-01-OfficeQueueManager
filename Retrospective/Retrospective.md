@@ -74,6 +74,21 @@ standard deviation: (actual)2.68
   - Total hours spent
   - Nr of automated unit test cases 
   - Coverage (if available)
+
+| Task| Total hours estimated | Total hours spent | #UnitTests |
+|------|------------|-----|----|
+| Update Queues| 1h30m-2h | 1h 30m | 9 |
+| Officer Call next client  | 1h30m -2h | 1h 30m | 5 |
+| Rest API | ---| 1h 20m | ---- |
+
+
+File         | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-------------|---------|----------|---------|---------|---------------------------------------------
+All files    |   66.07 |     40.9 |   77.77 |   68.22 | 
+ DB.js       |   82.41 |       50 |     100 |    87.2 | 108-109,120-121,132-133,144-145,159,176,191
+ Queue.js    |   61.01 |       40 |   72.72 |   60.34 | 59,88,101,113,122-132,139-150
+ Services.js |      50 |    31.81 |   53.33 |   51.42 | 5-13,20-28,39-40,53,62-69,79,92,111-118    
+
 - E2E testing:
   - Total hours estimated
   - Total hours spent
