@@ -45,7 +45,22 @@ Definition of Done:
 | _Select the next client in the queue_  |  _2h_  | _1h_   |
 | _Implement login functionality_  |  _2h_  |  _2h_  |
 
-- Hours per task average: (estimate)1.89 (actual)3.89, standard deviation: (estimate)0.031 (actual)2.88 (estimate and actual)
+- Hours per task average: (estimate)1.89 (actual)3.89, (actual)2.88 (estimate and actual)
+- 
+- ##### Table for estimate standard deviation
+| Group | Frequency |
+|------|------------|
+|_1h_|  _1_ |
+| _2h_  | _8_ |
+standard deviation: (estimate)0.031
+
+- ##### Table for actual standard deviation
+| Group | Frequency |
+|------|------------|
+|_1h-3h_|  _6_ |
+| _6h-10h_  | _3_ |
+standard deviation: (actual)2.68
+
 - Total task estimation error ratio: (1 + $8\times2$) / (10 + $4\times2$ + 6 + 7 + $2\times1$) - 1 = -0.48
 
 -------------- TODO -----------
