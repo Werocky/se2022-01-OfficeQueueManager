@@ -11,7 +11,7 @@ TEMPLATE FOR RETROSPECTIVE (Team 1)
 
 - 3 stories committed vs. 2 stories done 
 - Total of 9 points committed vs. 6 points done 
-- 48 of hours planned (8 for each team member) vs. 82 hours spent (as a team)
+- 48 of hours planned (8 for each team member) vs. 34 hours spent (as a team)
 
 Definition of Done:
 - Unit Tests passing
@@ -43,7 +43,7 @@ Definition of Done:
 | _Implement button to call next client_  | _2h_   | _2h_   |
 | _Remove the previous client_  |  _2h_  | _2h_   |
 | _Select the next client in the queue_  |  _2h_  | _1h_   |
-| _Implement login functionality_  |  _2h_  |  _2h 30m_  |
+| _Implement login functionality_  |  _2h_  |  _2h_  |
 
 
 -------------- TODO -----------
