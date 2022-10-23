@@ -10,7 +10,7 @@ TEMPLATE FOR RETROSPECTIVE (Team 1)
 ### Macro statistics
 
 - 3 stories committed vs. 2 stories done 
-- Total of 9 points committed vs. 6 points done done 
+- Total of 9 points committed vs. 6 points done 
 - 48 of hours planned (8 for each team member) vs. 38 hours spent (as a team)
 
 Definition of Done:
