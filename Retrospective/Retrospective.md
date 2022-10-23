@@ -1,4 +1,4 @@
-TEMPLATE FOR RETROSPECTIVE (Team ##)
+TEMPLATE FOR RETROSPECTIVE (Team 1)
 =====================================
 
 - [process measures](#process-measures)
@@ -11,27 +11,42 @@ TEMPLATE FOR RETROSPECTIVE (Team ##)
 
 - 3 stories committed vs. 2 stories done 
 - Total of 9 points committed vs. 6 points done done 
-- 48 of hours planned (8 for each team member) vs. XXXXXXXX hours spent (as a team)
+- 48 of hours planned (8 for each team member) vs. 38 hours spent (as a team)
 
-**Remember**a story is done ONLY if it fits the Definition of Done:
- 
+Definition of Done:
 - Unit Tests passing
 - Code review completed
 - Code present on VCS
 - End-to-End tests performed
 
-> Please refine your DoD if required (you cannot remove items!) 
 
 ### Detailed statistics
 
 | Story  | # Tasks | Points | Hours est. | Hours actual |
 |--------|---------|--------|------------|--------------|
-| _User-Select the service type_    |   _4_   |  _3_   |   _3d_     |              |
-| _Officer-Call next client_    |   _5_   | _3_    |    _1d_   |              |
-   
+| _User-Select the service type_    |   _4_   |  _3_   |   _3d_     |    _3d 2h 35m_    |
+| _Officer-Call next client_    |   _5_   | _3_    |    _1d_   |  _7h 40m_      |
 
-> place technical tasks corresponding to story `#0` and leave out story points (not applicable in this case)
+### Tasks statistics
+##### User-Select the service type
+| Task | Hours est. | Hours actual |
+|------|------------|--------------|
+| _Database for the services_  |  _1h_  |  _1d 2h_  |
+| _Website layout_   |  _2h_  | _2h 30m_   |
+| _Rest API_  | _2h_   | _2h 30m_   |
+| _Queue logic_  |  _2h_  | _7h 40m_   |
 
+##### Officer-Call next client
+| Task | Hours est. | Hours actual |
+|------|------------|--------------|
+| _Update queues_   |  _2h_  | _1h 40m_   |
+| _Implement button to call next client_  | _2h_   | _2h_   |
+| _Remove the previous client_  |  _2h_  | _2h_   |
+| _Select the next client in the queue_  |  _2h_  | _1h_   |
+| _Implement login functionality_  |  _2h_  |  _2h 30m_  |
+
+
+-------------- TODO -----------
 - Hours per task average, standard deviation (estimate and actual)
 - Total task estimation error ratio: sum of total hours estimation / sum of total hours spent - 1
 
@@ -60,15 +75,15 @@ In many cases, we took longer than expected to solve tasks. Initially we had to 
 - What lessons did you learn (both positive and negative) in this sprint?  
 We learned that working together can be really useful, in particular working in pairs to divide the work and test the parts implemented by the other person. But with the division of tasks we did, there were times when one person's work depended on what needed to be done by another; this made us slow down.
 
-- Which improvement goals set in the previous retrospective were you able to achieve? 
+- Which improvement goals set in the previous retrospective were you able to achieve? _Not necessary now_
   
-- Which ones you were not able to achieve? Why?
+- Which ones you were not able to achieve? Why? _Not necessary now_
 
 - Improvement goals for the next sprint and how to achieve them (technical tasks, team coordination, etc.)  
-Improve subdivision of tasks
-Better management of time related to testing
-More meeting in order to talk and understand where the problems of each of us are
+Improve subdivision of tasks  
+Better management of time related to testing  
+More meeting in order to talk and understand where the problems of each of us are  
 
-> Propose one or two
 
-- One thing you are proud of as a Team!!
+- One thing you are proud of as a Team!!  
+We were able to agree on the technology to be used and on how to carry out and implement the project
