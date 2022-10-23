@@ -105,7 +105,7 @@ All files    |   66.07 |     40.9 |   77.77 |   68.22 |
 ## ASSESSMENT
 
 - What caused your errors in estimation (if any)?  
-In many cases, we took longer than expected to solve tasks. Initially we had to quickly review the use of javascript and react and the testing part. Then we had some database management issues that we had to fix in order to continue. Also 
+In many cases, we took longer than expected to solve tasks. Initially we had to quickly review the use of javascript and react and the testing part. Then we had some database management issues that we had to fix in order to continue.
 
 - What lessons did you learn (both positive and negative) in this sprint?  
 We learned that working together can be really useful, in particular working in pairs to divide the work and test the parts implemented by the other person. But with the division of tasks we did, there were times when one person's work depended on what needed to be done by another; this made us slow down.
