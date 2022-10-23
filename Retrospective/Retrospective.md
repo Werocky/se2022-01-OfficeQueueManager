@@ -64,8 +64,6 @@ standard deviation: (estimate)0.031
 standard deviation: (actual)2.68
 
 - Total task estimation error ratio: (1 + $8\times2$) / (10 + $4\times2$ + 6 + 7 + $2\times1$) - 1 = -0.48
-
--------------- TODO -----------
   
 ## QUALITY MEASURES 
 
@@ -90,11 +88,17 @@ All files    |   66.07 |     40.9 |   77.77 |   68.22 |
  Services.js |      50 |    31.81 |   53.33 |   51.42 | 5-13,20-28,39-40,53,62-69,79,92,111-118    
 
 - E2E testing:
-  - Total hours estimated: 3h 
-  - Total hours spent: 2h
+
+|Total hours estimated: |Total hours spent: |
+|------|------------|
+| 3h|2h|
+
 - Code review 
-  - Total hours estimated: 2h 
-  - Total hours spent: 1h30m
+
+|Total hours estimated: |Total hours spent: |
+|------|------------|
+| 2h| 1h30m|
+
   
 
 
@@ -111,10 +115,10 @@ We learned that working together can be really useful, in particular working in 
 - Which ones you were not able to achieve? Why? _Not necessary now_
 
 - Improvement goals for the next sprint and how to achieve them (technical tasks, team coordination, etc.)  
-Improve subdivision of tasks  
-Better management of time related to testing  
-More meeting in order to talk and understand where the problems of each of us are  
+  - Improve subdivision of tasks  
+  - Better time management,  related to testing  
+  - More meetings in order to understand where the problems are, and the weaknesses and strenghts of each other, so we can better cover for the rest. 
 
 
 - One thing you are proud of as a Team!!  
-We were able to agree on the technology to be used and on how to carry out and implement the project
+We were able to agree on the technology to be used and on how to carry out and implement the project.
